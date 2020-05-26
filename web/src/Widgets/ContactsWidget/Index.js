@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import Box from '@material-ui/core/Box';
 import PropTypes from 'prop-types'
 import MaterialTable from '../../Components/MaterialTable'
-import {getData, updateData, addData, removeData} from  '../../Redux/actions'
+import {getData, crudOperation} from  '../../Redux/actions'
 import {firstLetterUpperCase} from '../../Utils/strUtil'
 
 const Index  = () => {
@@ -26,7 +26,7 @@ const Index  = () => {
 
       useEffect(()=>{
         if(updateContactsData.state) {
-          dispatch(updateData('/updateContactsData','/getContactsData',updateContactsData.data))
+          dispatch(crudOperation('/updateContactsData','/getContactsData',updateContactsData.data))
           return () => setUpdateContactsData({state:false, data:{}})
         }
 
@@ -34,7 +34,7 @@ const Index  = () => {
 
       useEffect(()=>{
         if(addContactsData.state) {
-          dispatch(addData('/addContactsData','/getContactsData',addContactsData.data))
+          dispatch(crudOperation('/addContactsData','/getContactsData',addContactsData.data))
           return () => setAddContactsData({state:false, data:{}})
         }
 
@@ -42,7 +42,7 @@ const Index  = () => {
 
       useEffect(()=>{
         if(removeContactsData.state) {
-          dispatch(removeData('/removeContactsData','/getContactsData',removeContactsData.data))
+          dispatch(crudOperation('/removeContactsData','/getContactsData',removeContactsData.data))
           return () => setRemoveContactsData({state:false, data:{}})
         }
 

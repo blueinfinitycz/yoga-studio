@@ -77,7 +77,7 @@ let finalArr=[]
             jmeno_1:{jmeno:pole[0].jmeno, idZak:pole[0].idZak},
             jmeno_2:{jmeno:pole[1].jmeno, idZak:pole[1].idZak},
             jmeno_3:{jmeno:pole[2].jmeno, idZak:pole[2].idZak},
-            jmeno_4:{jmeno:pole[3].jmeno, iZak:pole[3].idZak},
+            jmeno_4:{jmeno:pole[3].jmeno, idZak:pole[3].idZak},
         }
     )
     )

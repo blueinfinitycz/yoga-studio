@@ -38,25 +38,6 @@ export const logoutAct = () => {
     }
 }
 
-export const getDashboardData = () => {
-    return dispatch => {
-        dispatch(requestStart())
-        axios.post('/getDashboardData')
-        .then(res => {dispatch(requestSuccess(res));dispatch(dashboardReq(res.data))})
-        .catch(error =>{dispatch(requestError(error))})
-    }
-}
-
-export const getMainMenu = () => {
-    return dispatch => {
-        dispatch(requestStart())
-        axios.post('/getMainMenu')
-        .then(res => {dispatch(requestSuccess(res));dispatch(mainMenuReq(res.data))})
-        .catch(error =>{dispatch(requestError(error))})
-    }
-}
-
-
 export const getData = (url) => {
     return dispatch => {
         dispatch(requestStart())
@@ -64,17 +45,18 @@ export const getData = (url) => {
         .then(res => {
             dispatch(requestSuccess(res));
             switch(url){
+                case '/getMainMenuData' : dispatch(mainMenuReq(res.data)); break;
+                case '/getDashboardData' : dispatch(dashboardReq(res.data)); break;
                 case '/getEventsData' : dispatch(eventsReq(res.data)); break;
                 case  '/getPrashadData' : dispatch(prashadReq(res.data)); break;
                 case  '/getContactsData' : dispatch(contactsReq(res.data)); break;
-                default : dispatch(eventsReq(res.data)); break;
             }
         })
         .catch(error =>{dispatch(requestError(error))})
     }
 }
 
-export const updateData = (url,urlAllData,data) => {
+export const crudOperation = (url,urlAllData,data) => {
     return dispatch => {
         dispatch(requestStart())
         axios.post(url,{data: JSON.stringify(data)})
@@ -83,17 +65,7 @@ export const updateData = (url,urlAllData,data) => {
     }
 }
 
-export const addData = (url,urlAllData,data) => {
-    return dispatch => {
-        console.log('ADD : ',  JSON.stringify(data))
-        dispatch(requestStart())
-        axios.post(url,{data: JSON.stringify(data)})
-        .then(res => dispatch(getData(urlAllData)))
-        .catch(error =>{dispatch(requestError(error))})
-    }
-}
-
-export const removeData = (url,urlAllData,data) => {
+export const loadFile = (url,urlAllData,data) => {
     return dispatch => {
         dispatch(requestStart())
         axios.post(url,{data: JSON.stringify(data)})

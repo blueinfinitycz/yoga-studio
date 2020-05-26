@@ -4,7 +4,7 @@ import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import PropTypes from 'prop-types'
-import {getDashboardData} from  '../../Redux/actions'
+import {getData} from  '../../Redux/actions'
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -22,9 +22,12 @@ const Index  = () => {
       const {data} = useSelector(state => state.DashboardReducer)
 
       useEffect(()=> {
-        if(!dataLoaded) dispatch(getDashboardData())
-        return () => setDataLoaded(true)
+        if(!dataLoaded){
+          dispatch(getData('/getDashboardData'))
+          return () => setDataLoaded(true)
+        }
       }, [dataLoaded])
+
 
     return(
         <Box style={{display: 'flex', justifyContent:'center'}}>

@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import Box from '@material-ui/core/Box';
 import PropTypes from 'prop-types'
 import MaterialTable from '../../Components/MaterialTable'
-import {getData, updateData, addData, removeData} from  '../../Redux/actions'
+import {getData, crudOperation} from  '../../Redux/actions'
 
 const Index  = () => {
     const [dataLoaded, setDataLoaded] = useState(false)
@@ -25,27 +25,27 @@ const Index  = () => {
 
       useEffect(()=>{
         if(updateEventsData.state) {
-          dispatch(updateData('/updateEventsData','/getEventsData',updateEventsData.data))
+          dispatch(crudOperation('/updateEventsData','/getEventsData',updateEventsData.data))
           return () => setUpdateEventsData({state:false, data:{}})
         }
 
-      },[updateData])
+      },[updateEventsData.state])
 
       useEffect(()=>{
         if(addEventsData.state) {
-          dispatch(addData('/addEventsData','/getEventsData',addEventsData.data))
+          dispatch(crudOperation('/addEventsData','/getEventsData',addEventsData.data))
           return () => setAddEventsData({state:false, data:{}})
         }
 
-      },[addData])
+      },[addEventsData.state])
 
       useEffect(()=>{
         if(removeEventsData.state) {
-          dispatch(removeData('/removeEventsData','/getEventsData',removeEventsData.data))
+          dispatch(crudOperation('/removeEventsData','/getEventsData',removeEventsData.data))
           return () => setRemoveEventsData({state:false, data:{}})
         }
 
-      },[removeData])
+      },[removeEventsData.state])
     return(
         <Box style={{display: 'flex', flexDirection: 'column', maxWidth: '992px',margin: 'auto'}}>
         {

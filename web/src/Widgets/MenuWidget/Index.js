@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import {useDispatch, useSelector} from 'react-redux' 
-import {getMainMenu} from  '../../Redux/actions'
+import {getData} from  '../../Redux/actions'
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
@@ -51,8 +51,10 @@ const Index  = () => {
       const {data} = useSelector(state => state.MainMenuReducer)
 
       useEffect(()=> {
-        if(!dataLoaded) dispatch(getMainMenu())
-        return () => setDataLoaded(true)
+        if(!dataLoaded){
+          dispatch(getData('/getMainMenuData'))
+          return () => setDataLoaded(true)
+        }
       }, [dataLoaded])
       
       let linkIcon = [DashboardIcon,DirectionsRunIcon,FastfoodIcon,BathtubIcon,ImportContactsIcon]

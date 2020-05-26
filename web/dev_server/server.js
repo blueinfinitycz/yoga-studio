@@ -10,6 +10,8 @@ const dashboardRoute =  require('./api/routes/dashboard')
 const eventsRoute =  require('./api/routes/events')
 const prashadRoute =  require('./api/routes/prashad')
 const contactsRoute =  require('./api/routes/contacts')
+const fileUploadRoute =  require('./api/routes/loadFile')
+
 
 app.use('/', loginRoute)
 app.use('/', menuRoute)
@@ -17,6 +19,7 @@ app.use('/', dashboardRoute)
 app.use('/', eventsRoute)
 app.use('/', prashadRoute)
 app.use('/', contactsRoute)
+app.use('/', fileUploadRoute)
 
 
 

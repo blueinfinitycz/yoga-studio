@@ -4,7 +4,6 @@ const connection =  require('../../db')
 const authorize = require('../../authorization')
 
 router.post('/getDashboardData', authorize.verifyCookie(), (req, res)=>{
-
       connection.db.promise().query(`select item, id from menu order by id`)
     .then(([rows]) => {
         return JSON.stringify(rows)
